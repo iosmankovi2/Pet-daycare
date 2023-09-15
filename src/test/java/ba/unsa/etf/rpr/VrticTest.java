@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class VrticTest {
@@ -23,6 +24,16 @@ public class VrticTest {
 
         List<Rezervacija> rezervacije = vrtic.getRezervacije();
         assertTrue(rezervacije.contains(rezervacija));
+    }
+
+    /**
+     * Testira getter za naziv vrtića.
+     */
+    @Test
+
+    public void testGetNaziv(){
+        Vrtic vrtic = new Vrtic("Pet daycare");
+        assertEquals("Pet daycare",vrtic.getNaziv());
     }
 
 }
