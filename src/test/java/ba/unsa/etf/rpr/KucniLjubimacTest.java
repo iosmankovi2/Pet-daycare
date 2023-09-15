@@ -22,4 +22,14 @@ public class KucniLjubimacTest {
         KucniLjubimac ljubimac = new KucniLjubimac("Fren","Mačka");
         assertEquals("Fren",ljubimac.getIme());
     }
+
+    /**
+     * Testira getter za vrstu kućnog ljubimca.
+     */
+    @Test
+
+    public void testGetVrsta(){
+        KucniLjubimac ljubimac = new KucniLjubimac("Fren","Mačka");
+        assertEquals("Mačka",ljubimac.getVrsta());
+    }
 }
