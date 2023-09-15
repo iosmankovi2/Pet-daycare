@@ -16,13 +16,14 @@
 
 ### Technical informations
 
-<img src="https://github.com/iosmankovi2/Project/blob/81250ad770553c88d30cd4d69c29022e21a3bdf6/Technicalinformations.jpg" align="left" width=40% height=20%>
+<img src="https://github.com/iosmankovi2/Project/blob/81250ad770553c88d30cd4d69c29022e21a3bdf6/Technicalinformations.jpg" align="left" width=30% height=20%>
 
 - The project is developed in the Java programming language
 - JavaFX library is used for the graphical user interface
 - MySQL server is used for the database
 -  Various Java libraries and frameworks are used for application development
 -  ...
+
 
 ### Instructions for running
 
