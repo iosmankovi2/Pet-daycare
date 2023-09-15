@@ -5,6 +5,9 @@ import java.util.List;
 
 /**
  * Klasa predstavlja vlasnika kućnih ljubimaca.
+ *
+ * @author Ilhana
+ * @version 1.0
  */
 
 public class VlasnikKucnogLjubimca {

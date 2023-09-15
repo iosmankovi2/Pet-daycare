@@ -2,9 +2,13 @@ package ba.unsa.etf.rpr;
 
 /**
  * Klasa predstavlja vrtić za kućne ljubimce.
+ *
+ * @author Ilhana Osmanković
+ * @version 1.0
  */
 
-import java.util.ArrayList;/
+import java.util.ArrayList;
+import java.util.List;/
 
 public class Vrtic {
 
@@ -26,4 +30,18 @@ public class Vrtic {
         return naziv;
     }
 
+    /**
+     * Dodaje rezervaciju u vrtić.
+     *
+     * @param rezervacija Rezervacija koja se dodaje.
+     */
+
+    public void dodajRezervaciju(Rezervacija rezervacija){
+        rezervacije.add(rezervacija);
+    }
+
+    public List<Rezervacija> getRezervacije(){
+        return rezervacije;
+    }
 }
+

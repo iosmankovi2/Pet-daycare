@@ -1,8 +1,10 @@
 package ba.unsa.etf.rpr;
 
 /**
- * Hello world!
  *
+ *
+ * @author Ilhana
+ * @version 1.0
  */
 public class App 
 {

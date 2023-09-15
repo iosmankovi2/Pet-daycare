@@ -2,6 +2,9 @@ package ba.unsa.etf.rpr;
 
 /**
  * Klasa predstavlja kućnog ljubimca.
+ *
+ * @author Ilhana
+ * @version 1.0
  */
 
 public class KucniLjubimac {
