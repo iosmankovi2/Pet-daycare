@@ -5,7 +5,7 @@
 
 ### Features
 
-<img src="" align="right" width=40% height=20%>
+<img src="https://github.com/iosmankovi2/Project/blob/cd5e4eab89a173c11e240c8f06edcdc7544094b7/Features.png" align="right" width=40% height=20%>
 
 - Adding new pets to the daycare
 - Adding pet owners
@@ -16,6 +16,8 @@
 
 ### Technical informations
 
+<img src="https://github.com/iosmankovi2/Project/blob/81250ad770553c88d30cd4d69c29022e21a3bdf6/Technicalinformations.jpg" align="right" width=40% height=20%>
+
 - The project is developed in the Java programming language
 - JavaFX library is used for the graphical user interface
 - MySQL server is used for the database
@@ -23,6 +25,8 @@
 -  ...
 
 ### Instructions for running
+
+<img src="https://github.com/iosmankovi2/Project/blob/81250ad770553c88d30cd4d69c29022e21a3bdf6/Instructions%20how%20to%20run.avif" align="right" width=40% height=20%>
 
 1. Download the project's source code
 
