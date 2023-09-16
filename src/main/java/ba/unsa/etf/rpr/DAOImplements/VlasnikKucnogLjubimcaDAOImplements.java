@@ -1,4 +1,9 @@
 package ba.unsa.etf.rpr.DAOImplements;
 
-public class VlasnikKucnogLjubimcaDAOImplements {
+import ba.unsa.etf.rpr.Dao.VlasnikKucnogLjubimcaDAO;
+
+public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimcaDAO {
+
+
+
 }
