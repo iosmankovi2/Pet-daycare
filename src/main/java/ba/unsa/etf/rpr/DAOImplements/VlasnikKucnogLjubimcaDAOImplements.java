@@ -83,6 +83,19 @@ private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
 
     @Override
 
+    public List<VlasnikKucnogLjubimca> getByPrezime(String prezime){
+    // Filtrira vlasnike prema prezimenu
+
+      List<VlasnikKucnogLjubimca> vlasniciPoPrezimenu = new ArrayList<>();
+      for(VlasnikKucnogLjubimca vlasnik: vlasnici){
+          if(vlasnik.getPrezime().equals(prezime)){
+              vlasniciPoPrezimenu.add(vlasnik);
+          }
+      }
+      return vlasniciPoPrezimenu;
+
+    }
+
 
 
 
