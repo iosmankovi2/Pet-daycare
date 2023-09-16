@@ -9,16 +9,10 @@ public interface VlasnikKucnogLjubimcaDAO {
     VlasnikKucnogLjubimca getById(int id);
     List<VlasnikKucnogLjubimca> getAll();
     void insert(VlasnikKucnogLjubimca vlasnik);
-
     void update(VlasnikKucnogLjubimca vlasnik);
-
     void delete(int id);
-
     List<VlasnikKucnogLjubimca> getByIme(String ime);
-
     List<VlasnikKucnogLjubimca> getByPrezime(String prezime);
-
     List<VlasnikKucnogLjubimca> getByLjubimac(KucniLjubimac ljubimac);
-
 
 }
