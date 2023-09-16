@@ -15,6 +15,7 @@ public interface VlasnikKucnogLjubimcaDAO {
 
     List<VlasnikKucnogLjubimca> getByIme(String ime);
 
+    List<VlasnikKucnogLjubimca> getByPrezime(String prezime);
 
 
 }
