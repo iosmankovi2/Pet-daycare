@@ -55,6 +55,22 @@ private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
 
     @Override
 
+    public void delete(int id){
+    //Uklanja vlasnika sa datim ID-om iz liste
+
+        for(int i = 0; i < vlasnici.size(); i++){
+            if(vlasnici.get(i).getId() == id){
+                vlasnici.remove(i);
+                return; // Ako je vlasnik uklonjen, prekidamo petlju
+            }
+        }
+    }
+
+    @Override
+
+
+
+
 
 
 
