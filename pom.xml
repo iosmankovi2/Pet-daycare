@@ -34,6 +34,15 @@
       <version>1.9.5</version>
       <scope>test</scope>
     </dependency>
+
+    <!--Dodavanje MySQL Connector/J zavisnosti-->
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.28</version>
+    </dependency>
+
   </dependencies>
 
   <build>
