@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.Dao;
 
+import ba.unsa.etf.rpr.KucniLjubimac;
 import ba.unsa.etf.rpr.VlasnikKucnogLjubimca;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface VlasnikKucnogLjubimcaDAO {
     List<VlasnikKucnogLjubimca> getByIme(String ime);
 
     List<VlasnikKucnogLjubimca> getByPrezime(String prezime);
+
+    List<VlasnikKucnogLjubimca> getByLjubimac(KucniLjubimac ljubimac);
 
 
 }
