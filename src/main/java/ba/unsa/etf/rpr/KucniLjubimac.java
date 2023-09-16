@@ -14,6 +14,8 @@ public class KucniLjubimac implements Serializable {
     private String ime;
     private String vrsta;
 
+    private Integer id;
+
     /**
      * Prazan konstruktor zbog JavaBeans-a
      */
@@ -63,4 +65,11 @@ public class KucniLjubimac implements Serializable {
         this.vrsta = vrsta;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id){
+        this.id = id;
+    }
 }
