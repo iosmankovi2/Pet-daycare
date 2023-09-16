@@ -32,5 +32,14 @@ private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
 
     @Override
 
+    public void insert(VlasnikKucnogLjubimca vlasnik){
+    //Generiše novi ID za vlasnika
+
+        int newId = generateNewId();
+        vlasnik.setId(newId);
+        vlasnici.add(vlasnik);
+    }
+
+
 
 }
