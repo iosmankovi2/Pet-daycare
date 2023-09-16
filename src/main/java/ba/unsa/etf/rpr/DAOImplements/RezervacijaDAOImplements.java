@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.Dao.RezervacijaDAO;
 import ba.unsa.etf.rpr.Rezervacija;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class RezervacijaDAOImplements implements RezervacijaDAO {
@@ -65,6 +66,20 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         }
     }
 
+    @Override
+
+    public List<Rezervacija> getByDatumRezervacije(Date datum){
+        //Filtrira rezervacije prema datumu rezervacije
+
+        List<Rezervacija> rezervacijeZaDatum = new ArrayList<>();
+        for(Rezervacija rezervacija: rezervacije){
+            if(datum.equals(rezervacija.getDatumRezervacije()))
+            {
+                rezervacijeZaDatum.add(rezervacija);
+            }
+        }
+        return rezervacijeZaDatum;
+    }
 
 
     private int generateNewId() {
