@@ -11,5 +11,7 @@ public interface VlasnikKucnogLjubimcaDAO {
 
     void update(VlasnikKucnogLjubimca vlasnik);
 
+    void delete(int id);
+
 
 }
