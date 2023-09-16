@@ -17,6 +17,8 @@ public class VlasnikKucnogLjubimca implements Serializable {
     private String prezime;
     private List<KucniLjubimac> ljubimci;
 
+    private Integer id;
+
     /**
      * Prazan konstruktor zbog JavaBeans-a
      */
@@ -81,5 +83,13 @@ public class VlasnikKucnogLjubimca implements Serializable {
     public void setLjubimci(List<KucniLjubimac> ljubimci){
         this.ljubimci = ljubimci;
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id){
+        this.id = id;
     }
 }

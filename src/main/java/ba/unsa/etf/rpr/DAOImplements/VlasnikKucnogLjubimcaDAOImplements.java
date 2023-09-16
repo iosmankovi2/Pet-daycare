@@ -121,12 +121,8 @@ private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
             maxId = vlasnik.getId();
         }
     }
-
+    return maxId + 1;
 
     }
-
-
-
-
-
 }
+
