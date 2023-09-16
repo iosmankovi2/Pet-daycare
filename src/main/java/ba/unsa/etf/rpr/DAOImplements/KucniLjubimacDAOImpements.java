@@ -28,5 +28,26 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
 
     @Override
 
+    public void insert(KucniLjubimac ljubimac){
+        //Generišemo novi ID
+        
+        int newId = generateNewId();
+        ljubimac.setId(newId);
+        kucniLjubimci.add(ljubimac);
 
+    }
+
+    @Override
+
+    public void update(KucniLjubimac ljubimac){
+        for(int i = 0; i < kucniLjubimci.size(); i++){
+            if(kucniLjubimci.get(i).getId() == ljubimac.getId()){
+                kucniLjubimci.set(i,ljubimac);
+                return; //Ako je ljubimac ažuriran prekidamo petlju.
+            }
+        }
+    }
+
+    private int generateNewId() {
+    }
 }
