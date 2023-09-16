@@ -41,4 +41,21 @@ public class VrticDAOImplements implements VrticDAO {
         vrtic.setId(newId);
         vrtici.add(vrtic);
     }
+
+    @Override
+
+    public void update(Vrtic vrtic){
+        //Pronalazi postojeći vrtić prema ID-u i zamenjuje ga novim podacima
+
+        for(int i = 0; i < vrtici.size(); i++){
+            if(vrtici.get(i).getId() == vrtic.getId()){
+                vrtici.set(i,vrtic);
+                return; //Ako je vrtić ažuriran, prekidamo petlju
+            }
+        }
+    }
+
+    @Override
+
+
 }
