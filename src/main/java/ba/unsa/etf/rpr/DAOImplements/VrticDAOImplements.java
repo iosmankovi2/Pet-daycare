@@ -57,5 +57,20 @@ public class VrticDAOImplements implements VrticDAO {
 
     @Override
 
+    public void delete(int id){
+        //Uklanja vrtić sa datim ID-om iz liste
+
+        for(int i = 0; i < vrtici.size(); i++){
+            if(vrtici.get(i).getId() == id){
+                vrtici.remove(i);
+                return; //Ako je vrtić uklonjen, prekidamo petlju
+            }
+        }
+    }
+
+    //Pomoćna metoda za generisanje novog ID-a
+    private int generateNewId(){
+
+    }
 
 }
