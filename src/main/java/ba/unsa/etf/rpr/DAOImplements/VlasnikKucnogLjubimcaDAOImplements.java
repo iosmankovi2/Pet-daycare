@@ -25,6 +25,12 @@ private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
 
     @Override
 
+    public List<VlasnikKucnogLjubimca> getAll(){
+    //Vraća sve vlasnike iz liste
+        return vlasnici;
+    }
+
+    @Override
 
 
 }
