@@ -13,5 +13,8 @@ public interface VlasnikKucnogLjubimcaDAO {
 
     void delete(int id);
 
+    List<VlasnikKucnogLjubimca> getByIme(String ime);
+
+
 
 }
