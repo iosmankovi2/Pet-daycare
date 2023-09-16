@@ -9,11 +9,19 @@ package ba.unsa.etf.rpr;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
-public class Vrtic {
+public class Vrtic implements Serializable {
 
     private String naziv;
     private List<Rezervacija> rezervacije;
+
+    /**
+     * Prazan konstruktor zbog JavaBeans-a
+     */
+
+    public Vrtic(){
+    }
 
     /**
      * Konstruktor za vrtić za kućne ljubimce.
@@ -26,8 +34,17 @@ public class Vrtic {
         this.rezervacije = new ArrayList<>();
     }
 
+    /**
+     * Getteri i setteri zbog JavaBeans-a
+     * @return naziv
+     */
+
     public String getNaziv(){
         return naziv;
+    }
+
+    public void setNaziv(String naziv){
+        this.naziv = naziv;
     }
 
     /**
@@ -42,6 +59,10 @@ public class Vrtic {
 
     public List<Rezervacija> getRezervacije(){
         return rezervacije;
+    }
+
+    public void setRezervacije(List<Rezervacija> rezervacije){
+        this.rezervacije = rezervacije;
     }
 }
 
