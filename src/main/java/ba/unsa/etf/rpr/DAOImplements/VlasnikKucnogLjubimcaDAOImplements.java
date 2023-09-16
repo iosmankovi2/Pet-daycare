@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.DAOImplements;
 
 import ba.unsa.etf.rpr.Dao.VlasnikKucnogLjubimcaDAO;
+import ba.unsa.etf.rpr.KucniLjubimac;
 import ba.unsa.etf.rpr.VlasnikKucnogLjubimca;
 
 import java.util.ArrayList;
@@ -96,7 +97,33 @@ private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
 
     }
 
+    @Override
 
+    public List<VlasnikKucnogLjubimca> getByLjubimac(KucniLjubimac ljubimac){
+    //Filtrira vlasnike prema kućnom ljubimcu
+
+        List<VlasnikKucnogLjubimca> vlasniciPoLjubimcu = new ArrayList<>();
+
+        for(VlasnikKucnogLjubimca vlasnik: vlasnici){
+            if(vlasnik.getLjubimci().contains(ljubimac)){
+                vlasniciPoLjubimcu.add(vlasnik);
+            }
+        }
+        return vlasniciPoLjubimcu;
+    }
+
+    //Pomoćna metoda za generisanje novog ID-a
+
+    private int generateNewId(){
+    int maxId = 0;
+    for(VlasnikKucnogLjubimca vlasnik: vlasnici){
+        if(vlasnik.getId() > maxId){
+            maxId = vlasnik.getId();
+        }
+    }
+
+
+    }
 
 
 
