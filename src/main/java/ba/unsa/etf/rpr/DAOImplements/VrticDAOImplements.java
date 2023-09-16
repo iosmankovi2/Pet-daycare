@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.DAOImplements;
 
 import ba.unsa.etf.rpr.Dao.VrticDAO;
+import ba.unsa.etf.rpr.Rezervacija;
 import ba.unsa.etf.rpr.Vrtic;
 import jdk.dynalink.linker.LinkerServices;
 
