@@ -11,9 +11,9 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
 
     @Override
 
-    public KucniLjubimac getById(int id){
-        for(KucniLjubimac ljubimac: kucniLjubimci){
-            if(ljubimac.getId() == id){
+    public KucniLjubimac getById(int id) {
+        for (KucniLjubimac ljubimac : kucniLjubimci) {
+            if (ljubimac.getId() == id) {
                 return ljubimac;
             }
         }
@@ -22,15 +22,15 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
 
     @Override
 
-    public List<KucniLjubimac> getAll(){
+    public List<KucniLjubimac> getAll() {
         return kucniLjubimci;
     }
 
     @Override
 
-    public void insert(KucniLjubimac ljubimac){
+    public void insert(KucniLjubimac ljubimac) {
         //Generišemo novi ID
-        
+
         int newId = generateNewId();
         ljubimac.setId(newId);
         kucniLjubimci.add(ljubimac);
@@ -39,24 +39,37 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
 
     @Override
 
-    public void update(KucniLjubimac ljubimac){
-        for(int i = 0; i < kucniLjubimci.size(); i++){
-            if(kucniLjubimci.get(i).getId() == ljubimac.getId()){
-                kucniLjubimci.set(i,ljubimac);
+    public void update(KucniLjubimac ljubimac) {
+        for (int i = 0; i < kucniLjubimci.size(); i++) {
+            if (kucniLjubimci.get(i).getId() == ljubimac.getId()) {
+                kucniLjubimci.set(i, ljubimac);
                 return; //Ako je ljubimac ažuriran prekidamo petlju.
             }
         }
     }
 
-    public void delete(int id){
-        kucniLjubimci.removeIf(ljubimac -> ljubimac.getId() == id);
+    public void delete(int id) {
+        for (int i = 0; i < kucniLjubimci.size(); i++) {
+            KucniLjubimac ljubimac = kucniLjubimci.get(i);
+            if (ljubimac.getId() == id) {
+                kucniLjubimci.remove(i);
+                break; //prekida petlju nakon brisanja
+            }
+        }
     }
 
     /**
      * Pomoćna metoda za generisanje novog ID-a (simulacija auto-increment polja).
+     *
      * @return maxId+1
      */
     private int generateNewId() {
-
+        int maxId = 0;
+        for (KucniLjubimac ljubimac : kucniLjubimci) {
+            if (ljubimac.getId() > maxId) {
+                maxId = ljubimac.getId();
+            }
+        }
+        return maxId + 1;
     }
 }
