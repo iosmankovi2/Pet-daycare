@@ -9,5 +9,6 @@ public interface RezervacijaDAO {
     Rezervacija getById(int id);
     List<Rezervacija> getAll();
     void insert(Rezervacija rezervacija);
+    void update(Rezervacija rezervacija);
 
 }
