@@ -13,6 +13,7 @@ import java.io.Serializable;
 
 public class Vrtic implements Serializable {
 
+    private Integer id;
     private String naziv;
     private List<Rezervacija> rezervacije;
 
@@ -63,6 +64,14 @@ public class Vrtic implements Serializable {
 
     public void setRezervacije(List<Rezervacija> rezervacije){
         this.rezervacije = rezervacije;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id){
+        this.id = id;
     }
 }
 
