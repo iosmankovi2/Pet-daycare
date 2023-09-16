@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @version 1.0
  */
 
-public class Rezervacija {
+public class Rezervacija implements Serializable {
     private VlasnikKucnogLjubimca vlasnik;
     private KucniLjubimac ljubimac;
     private Date datumRezervacije;
