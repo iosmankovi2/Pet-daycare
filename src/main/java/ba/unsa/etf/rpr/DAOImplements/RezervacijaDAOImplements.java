@@ -11,6 +11,15 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
 
     @Override
 
+    public Rezervacija getById(int id){
+        //Pronalazi rezervaciju po ID-u iz liste
+        for(Rezervacija rezervacija: rezervacije){
+            if(rezervacija.getId() == id){
+                return rezervacija;
+            }
+        }
+        return null; //Ako nije pronađena rezervacija sa datim ID-om
+    }
 
 
 }

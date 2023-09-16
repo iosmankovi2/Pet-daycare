@@ -10,6 +10,8 @@ import java.io.Serializable;
  */
 
 public class Rezervacija implements Serializable {
+
+    private Integer id;
     private VlasnikKucnogLjubimca vlasnik;
     private KucniLjubimac ljubimac;
     private Date datumRezervacije;
@@ -68,6 +70,14 @@ public class Rezervacija implements Serializable {
 
     public void setDatumIzvrsenjaRezervacije(Date datumIzvrsenjaRezervacije){
         this.datumIzvrsenjaRezervacije = datumIzvrsenjaRezervacije;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id){
+        this.id = id;
     }
 }
 
