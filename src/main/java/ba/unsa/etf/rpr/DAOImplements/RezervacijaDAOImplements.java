@@ -35,10 +35,7 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
 
         int newId = generateNewId();
         rezervacija.setId(newId);
-        rezervacija.add(rezervacija);
-    }
-
-    private int generateNewId() {
+        rezervacije.add(rezervacija);
     }
 
     @Override
@@ -47,14 +44,31 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         //Pronalazi postojeću rezervaciju prema ID-u i zamjenjuje je novim podacima
 
         for(int i = 0; i < rezervacije.size(); i++){
-            if(rezervacija.get(i).getId() == rezervacija.getId())
+            if(rezervacije.get(i).getId() == rezervacija.getId())
             {
                 rezervacije.set(i,rezervacija);
+                return; //Ako je rezervacija ažurirana prekidamo petlju
+            }
+        }
+    }
+
+    @Override
+
+    public void delete(int id){
+        //Uklanja rezervaciju sa datim ID-om iz liste
+        for(int i = 0; i < rezervacije.size(); i++)
+        {
+            if(rezervacije.get(i).getId() == id){
+                rezervacije.remove(i);
                 return;
             }
         }
     }
 
+
+
+    private int generateNewId() {
+    }
 
 
 }
