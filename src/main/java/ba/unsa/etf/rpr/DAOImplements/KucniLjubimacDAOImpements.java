@@ -19,4 +19,14 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
         }
         return null; //Ako nije pronađen ljubimac sa datim ID-om
     }
+
+    @Override
+
+    public List<KucniLjubimac> getAll(){
+        return kucniLjubimci;
+    }
+
+    @Override
+
+
 }
