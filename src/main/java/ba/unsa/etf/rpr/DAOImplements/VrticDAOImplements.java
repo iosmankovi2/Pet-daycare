@@ -27,5 +27,18 @@ public class VrticDAOImplements implements VrticDAO {
 
     @Override
 
+    public List<Vrtic> getAll(){
+        //Vraća sve vrtiće iz liste
 
+        return vrtici;
+    }
+
+    @Override
+    public void insert(Vrtic vrtic){
+        //Generiše novi ID za vrtić
+
+        int newId = generateNewId();
+        vrtic.setId(newId);
+        vrtici.add(vrtic);
+    }
 }
