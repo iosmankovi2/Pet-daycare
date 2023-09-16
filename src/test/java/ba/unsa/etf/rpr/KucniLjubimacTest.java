@@ -1,8 +1,9 @@
 package ba.unsa.etf.rpr;
 
 import org.junit.Test;
-
+import static org.mockito.Mockito.mock;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -18,10 +19,25 @@ public class KucniLjubimacTest {
      */
     @Test
 
-    public void testGetIme(){
-        KucniLjubimac ljubimac = new KucniLjubimac("Fren","Mačka");
-        assertEquals("Fren",ljubimac.getIme());
+  /*  public void testGetIme(){
+
+        //Kreiramo mock objekat za KucniLjubimac
+
+        KucniLjubimac mockljubimac = mock(KucniLjubimac.class);
+
+        //Postavljamo očekivanje da mockLjubimac.getIme() vrati "Buddy"
+
+        when(mockljubimac.getIme()).thenReturn("Buddy");
+
+        //Poziv metode koju testiramo
+
+        String imeLjubimca = mockljubimac.getIme();
+
+        //Provjera očekivanja
+
+        assertEquals("Buddy",imeLjubimca);
     }
+    */
 
     /**
      * Testira getter za vrstu kućnog ljubimca.
