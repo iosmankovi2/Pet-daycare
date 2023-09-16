@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr;
 
 import java.util.Date;
-
+import java.io.Serializable;
 /**
  *Klasa predstavlja rezervaciju u vrtiću za kućne ljubimce.
  *
@@ -14,6 +14,13 @@ public class Rezervacija {
     private KucniLjubimac ljubimac;
     private Date datumRezervacije;
     private Date datumIzvrsenjaRezervacije;
+
+    /**
+     * Prazan konstruktor zbog JavaBeans-a
+     */
+
+    public Rezervacija(){
+    }
 
     /**
      * Konstruktor za rezervaciju
@@ -35,16 +42,32 @@ public class Rezervacija {
         return vlasnik;
     }
 
+    public void setVlasnik(VlasnikKucnogLjubimca vlasnik){
+        this.vlasnik = vlasnik;
+    }
+
     public KucniLjubimac getLjubimac(){
         return ljubimac;
+    }
+
+    public void setLjubimac(KucniLjubimac ljubimac){
+        this.ljubimac = ljubimac;
     }
 
     public Date getDatumRezervacije(){
         return datumRezervacije;
     }
 
+    public void setDatumRezervacije(Date datumRezervacije){
+        this.datumRezervacije = datumRezervacije;
+    }
+
     public Date getDatumIzvrsenjaRezervacije(){
         return datumIzvrsenjaRezervacije;
+    }
+
+    public void setDatumIzvrsenjaRezervacije(Date datumIzvrsenjaRezervacije){
+        this.datumIzvrsenjaRezervacije = datumIzvrsenjaRezervacije;
     }
 }
 
