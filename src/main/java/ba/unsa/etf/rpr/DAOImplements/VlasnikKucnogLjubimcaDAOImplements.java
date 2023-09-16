@@ -40,6 +40,22 @@ private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
         vlasnici.add(vlasnik);
     }
 
+    @Override
+
+    public void update(VlasnikKucnogLjubimca vlasnik){
+    //Pronalazi postojećeg vlasnika prema ID-u i zamenjuje ga novim podacima
+
+        for(int i = 0; i < vlasnici.size(); i++){
+            if(vlasnici.get(i).getId() == vlasnik.getId()){
+                vlasnici.set(i, vlasnik);
+                return; //Ako je vlasnik ažuriran, prekidamo petlju
+            }
+        }
+    }
+
+    @Override
+
+
 
 
 }
