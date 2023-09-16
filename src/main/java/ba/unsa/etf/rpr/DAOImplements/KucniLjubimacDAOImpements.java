@@ -48,6 +48,15 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
         }
     }
 
+    public void delete(int id){
+        kucniLjubimci.removeIf(ljubimac -> ljubimac.getId() == id);
+    }
+
+    /**
+     * Pomoćna metoda za generisanje novog ID-a (simulacija auto-increment polja).
+     * @return maxId+1
+     */
     private int generateNewId() {
+
     }
 }
