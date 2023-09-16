@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +11,18 @@ import java.util.List;
  * @version 1.0
  */
 
-public class VlasnikKucnogLjubimca {
+public class VlasnikKucnogLjubimca implements Serializable {
 
     private String ime;
     private String prezime;
     private List<KucniLjubimac> ljubimci;
+
+    /**
+     * Prazan konstruktor zbog JavaBeans-a
+     */
+
+    public VlasnikKucnogLjubimca(){
+    }
 
     /**
      * Konstruktor za vlasnika kućnih ljubimaca.
@@ -63,7 +71,15 @@ public class VlasnikKucnogLjubimca {
         ljubimci.add(ljubimac);
     }
 
+    /**
+     * Getter i setter za listu ljubimaca zbog JavaBeansa-a
+     */
     public List<KucniLjubimac> getLjubimci() {
         return ljubimci;
+    }
+
+    public void setLjubimci(List<KucniLjubimac> ljubimci){
+        this.ljubimci = ljubimci;
+
     }
 }
