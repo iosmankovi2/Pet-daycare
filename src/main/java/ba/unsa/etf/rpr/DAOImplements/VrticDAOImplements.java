@@ -71,6 +71,13 @@ public class VrticDAOImplements implements VrticDAO {
     //Pomoćna metoda za generisanje novog ID-a
     private int generateNewId(){
 
+        int maxId = 0;
+        for(Vrtic vrtic: vrtici){
+            if(vrtic.getId() > maxId){
+                maxId = vrtic.getId();
+            }
+        }
+        return maxId + 1;
     }
 
 }
