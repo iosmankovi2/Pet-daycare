@@ -9,5 +9,7 @@ public interface VlasnikKucnogLjubimcaDAO {
     List<VlasnikKucnogLjubimca> getAll();
     void insert(VlasnikKucnogLjubimca vlasnik);
 
+    void update(VlasnikKucnogLjubimca vlasnik);
+
 
 }
