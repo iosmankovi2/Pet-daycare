@@ -81,8 +81,15 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         return rezervacijeZaDatum;
     }
 
-
+    //Pomoćna metoda za generisanje novog ID-a
     private int generateNewId() {
+        int maxId = 0;
+        for(Rezervacija rezervacija: rezervacije){
+            if(rezervacija.getId() > maxId){
+                maxId = rezervacija.getId();
+            }
+        }
+        return maxId+1;
     }
 
 
