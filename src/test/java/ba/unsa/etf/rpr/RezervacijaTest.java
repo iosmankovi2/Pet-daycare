@@ -6,8 +6,7 @@ import java.util.Date;
 
 public class RezervacijaTest {
 
-    /**
-     * Testira getter za vlasnika rezervacije
+    /* Testira getter za vlasnika rezervacije
      */
     @Test
 

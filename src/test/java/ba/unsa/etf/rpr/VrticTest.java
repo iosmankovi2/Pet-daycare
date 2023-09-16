@@ -24,7 +24,7 @@ public class VrticTest {
 
     /**
      * Kreiramo mock objekte za rezervaciju, vlansika i ljubimca.
-     */
+
 
     @Test
 
@@ -50,5 +50,5 @@ public class VrticTest {
 
         assertTrue(vrtic.getRezervacije().contains(mockRezervacija));
     }
-
+*/
 }

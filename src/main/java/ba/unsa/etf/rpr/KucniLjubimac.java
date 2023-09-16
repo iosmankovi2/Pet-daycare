@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr;
 
+import java.io.Serializable;
+
 /**
  * Klasa predstavlja kućnog ljubimca.
  *
@@ -7,10 +9,17 @@ package ba.unsa.etf.rpr;
  * @version 1.0
  */
 
-public class KucniLjubimac {
+public class KucniLjubimac implements Serializable {
 
     private String ime;
     private String vrsta;
+
+    /**
+     * Prazan konstruktor zbog JavaBeans-a
+     */
+
+    public KucniLjubimac(){
+    }
 
     /**
      * Konstruktor za kućnog ljubimca.
