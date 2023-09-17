@@ -90,12 +90,22 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
     @Override
 
     public void update(KucniLjubimac ljubimac) {
-        for (int i = 0; i < kucniLjubimci.size(); i++) {
+
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        PreparedStatement statement = connection.prepareStatement("UPDATE kucni_ljubimci SET ime = ?, vrsta = ?, ... WHERE id = ?")) {
+            statement.setString(1,ljubimac.getIme());
+            statement.setInt(7,ljubimac.getId());
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+       /* for (int i = 0; i < kucniLjubimci.size(); i++) {
             if (kucniLjubimci.get(i).getId() == ljubimac.getId()) {
                 kucniLjubimci.set(i, ljubimac);
                 return; //Ako je ljubimac ažuriran prekidamo petlju.
             }
-        }
+        } */
     }
 
     public void delete(int id) {
