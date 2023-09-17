@@ -3,22 +3,48 @@ package ba.unsa.etf.rpr.DAOImplements;
 import ba.unsa.etf.rpr.Dao.RezervacijaDAO;
 import ba.unsa.etf.rpr.Rezervacija;
 
+import javax.swing.*;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
 
 public class RezervacijaDAOImplements implements RezervacijaDAO {
     private List<Rezervacija> rezervacije = new ArrayList<>();
+    private final String URL;
+    private final String USER;
+    private final String PASSWORD;
 
+    public RezervacijaDAOImplements(String url, String user, String password){
+        URL = url;
+        USER = user;
+        PASSWORD = password;
+    }
     @Override
 
     public Rezervacija getById(int id){
         //Pronalazi rezervaciju po ID-u iz liste
-        for(Rezervacija rezervacija: rezervacije){
+
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM rezervacije WHERE id = ?")){
+            statement.setInt(1,id);
+            ResultSet resultSet = statement.executeQuery();
+
+            if(resultSet.next()){
+                Rezervacija rezervacija = new Rezervacija();
+                rezervacija.setId(resultSet.getInt("id"));
+                rezervacija.setDatumRezervacije(resultSet.getDate("datum_rezervacije"));
+                return rezervacija;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        /* for(Rezervacija rezervacija: rezervacije){
             if(rezervacija.getId() == id){
                 return rezervacija;
             }
-        }
+        } */
         return null; //Ako nije pronađena rezervacija sa datim ID-om
     }
 
