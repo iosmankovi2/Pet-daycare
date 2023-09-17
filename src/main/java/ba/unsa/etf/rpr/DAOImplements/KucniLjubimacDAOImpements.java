@@ -74,9 +74,16 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
     public void insert(KucniLjubimac ljubimac) {
         //Generišemo novi ID
 
-        int newId = generateNewId();
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO kucni_ljubimci(ime, vrsta,...) VALUES (?,?,...)")) {
+            statement.setString(1,ljubimac.getIme());
+            statement.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+      /*  int newId = generateNewId();
         ljubimac.setId(newId);
-        kucniLjubimci.add(ljubimac);
+        kucniLjubimci.add(ljubimac); */
 
     }
 
