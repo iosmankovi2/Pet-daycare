@@ -18,21 +18,21 @@ public class VrticDAOImplements implements VrticDAO {
 
     @Override
 
-    public Vrtic getById(int id){
+    public Vrtic getById(int id) {
         //Pronalazi vrtić po ID-u iz liste
-        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM vrici WHERE id = ?")){
-            statement.setInt(1,id);
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM vrici WHERE id = ?")) {
+            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 Vrtic vrtic = new Vrtic();
                 vrtic.setId(resultSet.getInt("id"));
                 vrtic.setNaziv(resultSet.getString("naziv"));
 
                 return vrtic;
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -48,21 +48,21 @@ public class VrticDAOImplements implements VrticDAO {
 
     @Override
 
-    public List<Vrtic> getAll(){
+    public List<Vrtic> getAll() {
 
         List<Vrtic> vrtici = new ArrayList<>();
 
-        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-           Statement statement = connection.createStatement()) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT *FROM vrtici");
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 Vrtic vrtic = new Vrtic();
                 vrtic.setId(resultSet.getInt("id"));
                 vrtic.setNaziv((resultSet.getString("naziv")));
 
                 vrtici.add(vrtic);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         //Vraća sve vrtiće iz liste
@@ -121,9 +121,20 @@ public class VrticDAOImplements implements VrticDAO {
 */
     @Override
 
-    public void delete(int id){
+    public void delete(int id) {
         //Uklanja vrtić sa datim ID-om iz liste
 
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM vrtici WHERE id = ?")) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
         for(int i = 0; i < vrtici.size(); i++){
             if(vrtici.get(i).getId() == id){
                 vrtici.remove(i);
@@ -144,4 +155,6 @@ public class VrticDAOImplements implements VrticDAO {
         return maxId + 1;
     }
 
+     */
 }
+
