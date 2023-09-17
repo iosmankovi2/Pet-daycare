@@ -115,13 +115,21 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
 
     public void delete(int id){
         //Uklanja rezervaciju sa datim ID-om iz liste
-        for(int i = 0; i < rezervacije.size(); i++)
+
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM rezervacije WHERE id = ?")) {
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+     /*   for(int i = 0; i < rezervacije.size(); i++)
         {
             if(rezervacije.get(i).getId() == id){
                 rezervacije.remove(i);
                 return;
             }
-        }
+        } */
     }
 
     @Override
