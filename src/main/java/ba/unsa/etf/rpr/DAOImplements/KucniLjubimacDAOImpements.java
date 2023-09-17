@@ -12,15 +12,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
     private List<KucniLjubimac> kucniLjubimci = new ArrayList<>();
 
-    private final String URL;
-    private final String USER;
-    private final String PASSWORD;
-
-    public KucniLjubimacDAOImpements(String url, String user, String password){
-        URL = url;
-        USER = user;
-        PASSWORD = password;
-    }
+    private static final String URL = "jdbc:mysql://localhost:3306/pet_daycare";
+    private static final String USER = "root";
+    private static final String PASSWORD = "projekatizrpr-a";
 
     @Override
 
