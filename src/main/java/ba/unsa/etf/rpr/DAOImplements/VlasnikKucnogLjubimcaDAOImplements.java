@@ -145,6 +145,23 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     public List<VlasnikKucnogLjubimca> getByIme(String ime){
     //Filtrira vlasnika prema imenu
 
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnici WHERE ime = ?")) {
+            statement.setString(1,ime);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
+                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setIme(resultSet.getString("ime"));
+                vlasnik.setPrezime(resultSet.getString("prezime"));
+                vlasnici.add(vlasnik);
+
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        /*
         List<VlasnikKucnogLjubimca> vlasniciPoImenu = new ArrayList<>();
         for(VlasnikKucnogLjubimca vlasnik: vlasnici){
             if(vlasnik.getIme().equals(ime)){
@@ -153,6 +170,8 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
         }
 
         return vlasniciPoImenu;
+        */
+        return vlasnici;
     }
 
     @Override
