@@ -52,6 +52,20 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
     @Override
 
     public List<KucniLjubimac> getAll() {
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT *FROM kucni_ljubimac")){
+
+            while(resultSet.next()){
+                KucniLjubimac ljubimac = new KucniLjubimac();
+                ljubimac.setId(resultSet.getInt("id"));
+                ljubimac.setIme(resultSet.getString("ime"));
+                kucniLjubimci.add(ljubimac);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
         return kucniLjubimci;
     }
 
