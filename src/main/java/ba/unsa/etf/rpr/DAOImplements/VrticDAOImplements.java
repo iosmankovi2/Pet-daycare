@@ -52,7 +52,19 @@ public class VrticDAOImplements implements VrticDAO {
 
         List<Vrtic> vrtici = new ArrayList<>();
 
-        try()
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+           Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("SELECT *FROM vrtici");
+            while(resultSet.next()){
+                Vrtic vrtic = new Vrtic();
+                vrtic.setId(resultSet.getInt("id"));
+                vrtic.setNaziv((resultSet.getString("naziv")));
+
+                vrtici.add(vrtic);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
         //Vraća sve vrtiće iz liste
 
         return vrtici;
