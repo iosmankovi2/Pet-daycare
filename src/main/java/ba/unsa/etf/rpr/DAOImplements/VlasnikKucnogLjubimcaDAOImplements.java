@@ -3,7 +3,9 @@ package ba.unsa.etf.rpr.DAOImplements;
 import ba.unsa.etf.rpr.Dao.VlasnikKucnogLjubimcaDAO;
 import ba.unsa.etf.rpr.KucniLjubimac;
 import ba.unsa.etf.rpr.VlasnikKucnogLjubimca;
+import com.mysql.cj.exceptions.DataReadException;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +21,31 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
 
     public VlasnikKucnogLjubimca getById(int id){
     //  Pronalazak vlasnika po Id-u iz liste
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnici WHERE id = ? "))
+        {
+            statement.setInt(1,id);
+            ResultSet resultSet = statement.executeQuery();
 
+            if(resultSet.next()){
+                VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
+                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setIme(resultSet.getString("ime"));
+                vlasnik.setPrezime(resultSet.getString("prezime"));
+                return vlasnik;
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    /*
     for(VlasnikKucnogLjubimca vlasnik: vlasnici){
         if(vlasnik.getId() == id){
             return vlasnik;
         }
     }
-    return null; //Ako nije pronađen vlasnik sa datim ID-om
+    return null; //Ako nije pronađen vlasnik sa datim ID-om */
 }
 
     @Override
