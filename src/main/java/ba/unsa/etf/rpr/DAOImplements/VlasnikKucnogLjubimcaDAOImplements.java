@@ -9,9 +9,13 @@ import java.util.List;
 
 public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimcaDAO {
 
-private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
+    private static final String URL = "jdbc:mysql://localhost:3306/pet_daycare";
+    private static final String USER = "root";
+    private static final String PASSWORD = "projekatizrpr-a";
 
-@Override
+    private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
+
+    @Override
 
     public VlasnikKucnogLjubimca getById(int id){
     //  Pronalazak vlasnika po Id-u iz liste
