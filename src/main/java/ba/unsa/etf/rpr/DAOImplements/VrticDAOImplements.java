@@ -71,13 +71,29 @@ public class VrticDAOImplements implements VrticDAO {
     }
 
     @Override
-    public void insert(Vrtic vrtic){
+    public void insert(Vrtic vrtic) {
         //Generiše novi ID za vrtić
 
-        int newId = generateNewId();
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO vrtici (naziv) VALUES (?)",
+                     Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, vrtic.getNaziv());
+
+            statement.executeUpdate();
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                vrtic.setId(generatedKeys.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+      /*  int newId = generateNewId();
         vrtic.setId(newId);
         vrtici.add(vrtic);
-    }
+    } */
 
     @Override
 
