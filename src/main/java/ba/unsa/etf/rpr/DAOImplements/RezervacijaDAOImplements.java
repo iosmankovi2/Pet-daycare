@@ -52,6 +52,22 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
 
     public List<Rezervacija> getAll(){
         //Vraća sve rezervacije iz liste
+
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("SELECT *FROM rezervacije");
+
+            while(resultSet.next()){
+                Rezervacija rezervacija = new Rezervacija();
+                rezervacija.setId(resultSet.getInt("id"));
+                rezervacija.setDatumRezervacije(resultSet.getDate("datum_rezervacije"));
+                rezervacije.add(rezervacija);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
         return rezervacije;
     }
 
