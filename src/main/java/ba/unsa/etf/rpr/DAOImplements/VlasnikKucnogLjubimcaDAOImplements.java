@@ -52,6 +52,20 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
 
     public List<VlasnikKucnogLjubimca> getAll(){
     //Vraća sve vlasnike iz liste
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnici")){
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
+                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setIme(resultSet.getString("ime"));
+                vlasnik.setPrezime(resultSet.getString("prezime"));
+                vlasnici.add(vlasnik);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return vlasnici;
     }
 
