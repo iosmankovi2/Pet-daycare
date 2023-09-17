@@ -94,13 +94,21 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
     public void update(Rezervacija rezervacija){
         //Pronalazi postojeću rezervaciju prema ID-u i zamjenjuje je novim podacima
 
-        for(int i = 0; i < rezervacije.size(); i++){
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("UPDATE rezervacije SET datum_rezervacije = ?,...WHERE id = ?")) {
+            statement.setDate(1,new java.sql.Date(rezervacija.getDatumRezervacije().getTime()));
+            statement.setInt(7,rezervacija.getId());
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+     /*   for(int i = 0; i < rezervacije.size(); i++){
             if(rezervacije.get(i).getId() == rezervacija.getId())
             {
                 rezervacije.set(i,rezervacija);
                 return; //Ako je rezervacija ažurirana prekidamo petlju
             }
-        }
+        } */
     }
 
     @Override
