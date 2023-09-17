@@ -74,9 +74,26 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     public void insert(VlasnikKucnogLjubimca vlasnik){
     //Generiše novi ID za vlasnika
 
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO vlasnici(ime,prezime) VALUES (?,?)",
+                Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1,vlasnik.getIme());
+            statement.setString(2,vlasnik.getPrezime());
+            statement.executeUpdate();
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if(generatedKeys.next()){
+                vlasnik.setId(generatedKeys.getInt(1));
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        /*
         int newId = generateNewId();
         vlasnik.setId(newId);
         vlasnici.add(vlasnik);
+        */
     }
 
     @Override
