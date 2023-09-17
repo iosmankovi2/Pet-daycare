@@ -101,12 +101,22 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     public void update(VlasnikKucnogLjubimca vlasnik){
     //Pronalazi postojećeg vlasnika prema ID-u i zamenjuje ga novim podacima
 
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        PreparedStatement statement = connection.prepareStatement("UPDATE vlasnici SET ime = ?, prezime = ? WHERE id = ?")){
+            statement.setString(1,vlasnik.getIme());
+            statement.setString(2,vlasnik.getPrezime());
+            statement.setInt(3,vlasnik.getId());
+            statement.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        /*
         for(int i = 0; i < vlasnici.size(); i++){
             if(vlasnici.get(i).getId() == vlasnik.getId()){
                 vlasnici.set(i, vlasnik);
                 return; //Ako je vlasnik ažuriran, prekidamo petlju
             }
-        }
+        } */
     }
 
     @Override
