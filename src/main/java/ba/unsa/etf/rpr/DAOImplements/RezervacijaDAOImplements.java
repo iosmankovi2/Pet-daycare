@@ -138,12 +138,29 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         //Filtrira rezervacije prema datumu rezervacije
 
         List<Rezervacija> rezervacijeZaDatum = new ArrayList<>();
+
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM rezervacije WHERE datum_rezervacije = ?")) {
+            statement.setDate(1,new java.sql.Date(datum.getTime()));
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next())
+            {
+                Rezervacija rezervacija = new Rezervacija();
+                rezervacija.setId(resultSet.getInt("id"));
+                rezervacija.setDatumRezervacije(resultSet.getDate("datum_rezervacije"));
+                rezervacijeZaDatum.add(rezervacija);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+      /*   List<Rezervacija> rezervacijeZaDatum = new ArrayList<>();
         for(Rezervacija rezervacija: rezervacije){
             if(datum.equals(rezervacija.getDatumRezervacije()))
             {
                 rezervacijeZaDatum.add(rezervacija);
             }
-        }
+        } */
         return rezervacijeZaDatum;
     }
 
