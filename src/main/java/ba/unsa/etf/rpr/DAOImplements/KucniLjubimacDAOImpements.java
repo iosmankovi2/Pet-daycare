@@ -3,20 +3,49 @@ package ba.unsa.etf.rpr.DAOImplements;
 import ba.unsa.etf.rpr.Dao.KucniLjubimacDAO;
 import ba.unsa.etf.rpr.KucniLjubimac;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PropertyPermission;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
     private List<KucniLjubimac> kucniLjubimci = new ArrayList<>();
 
+    private final String URL;
+    private final String USER;
+    private final String PASSWORD;
+
+    public KucniLjubimacDAOImpements(String url, String user, String password){
+        URL = url;
+        USER = user;
+        PASSWORD = password;
+    }
+
     @Override
 
     public KucniLjubimac getById(int id) {
-        for (KucniLjubimac ljubimac : kucniLjubimci) {
+
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM kucni_ljubimac WHERE id = ?")){
+            statement.setInt(1,id);
+            ResultSet resultSet = statement.executeQuery();
+
+            if(resultSet.next()){
+                KucniLjubimac ljubimac = new KucniLjubimac();
+                ljubimac.setId(resultSet.getInt("id"));
+                ljubimac.setIme(resultSet.getString("ime"));
+                return ljubimac;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        /* for (KucniLjubimac ljubimac : kucniLjubimci) {
             if (ljubimac.getId() == id) {
                 return ljubimac;
             }
-        }
+        } */
         return null; //Ako nije pronađen ljubimac sa datim ID-om
     }
 
