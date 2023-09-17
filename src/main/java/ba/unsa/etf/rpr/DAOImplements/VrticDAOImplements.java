@@ -97,9 +97,20 @@ public class VrticDAOImplements implements VrticDAO {
 
     @Override
 
-    public void update(Vrtic vrtic){
+    public void update(Vrtic vrtic) {
         //Pronalazi postojeći vrtić prema ID-u i zamenjuje ga novim podacima
 
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement statement = connection.prepareStatement("UPDATE vrtici SET naziv = ? WHERE id = ?")) {
+            statement.setString(1, vrtic.getNaziv());
+            statement.setInt(2, vrtic.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
         for(int i = 0; i < vrtici.size(); i++){
             if(vrtici.get(i).getId() == vrtic.getId()){
                 vrtici.set(i,vrtic);
@@ -107,7 +118,7 @@ public class VrticDAOImplements implements VrticDAO {
             }
         }
     }
-
+*/
     @Override
 
     public void delete(int id){
