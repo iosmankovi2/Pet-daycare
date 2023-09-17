@@ -124,12 +124,20 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     public void delete(int id){
     //Uklanja vlasnika sa datim ID-om iz liste
 
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        PreparedStatement statement = connection.prepareStatement("DELETE FROM vlasnici WHERE id = ?")) {
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        /*
         for(int i = 0; i < vlasnici.size(); i++){
             if(vlasnici.get(i).getId() == id){
                 vlasnici.remove(i);
                 return; // Ako je vlasnik uklonjen, prekidamo petlju
             }
-        }
+        } */
     }
 
     @Override
