@@ -109,6 +109,15 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
     }
 
     public void delete(int id) {
+
+        try (Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        PreparedStatement statement = connection.prepareStatement("DELETE FROM kucni_ljubimci WHERE id = ?")){
+        statement.setInt(1,id);
+        statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        /*
         for (int i = 0; i < kucniLjubimci.size(); i++) {
             KucniLjubimac ljubimac = kucniLjubimci.get(i);
             if (ljubimac.getId() == id) {
@@ -123,7 +132,7 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
      *
      * @return maxId+1
      */
-    private int generateNewId() {
+   /* private int generateNewId() {
         int maxId = 0;
         for (KucniLjubimac ljubimac : kucniLjubimci) {
             if (ljubimac.getId() > maxId) {
@@ -131,5 +140,6 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
             }
         }
         return maxId + 1;
+        */
     }
 }
