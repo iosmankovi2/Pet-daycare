@@ -76,9 +76,17 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
     public void insert(Rezervacija rezervacija){
         //Generiše novi ID za rezervaciju
 
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO rezervacije(datum_rezervacije,...)VALUES (?,...)")) {
+            statement.setDate(1,new java.sql.Date(rezervacija.getDatumRezervacije().getTime()));
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        /*
         int newId = generateNewId();
         rezervacija.setId(newId);
-        rezervacije.add(rezervacija);
+        rezervacije.add(rezervacija); */
     }
 
     @Override
