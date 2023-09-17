@@ -5,22 +5,42 @@ import ba.unsa.etf.rpr.Rezervacija;
 import ba.unsa.etf.rpr.Vrtic;
 import jdk.dynalink.linker.LinkerServices;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class VrticDAOImplements implements VrticDAO {
+
+    private static final String URL = "jdbc:mysql://localhost:3306/pet_daycare";
+    private static final String USER = "root";
+    private static final String PASSWORD = "projekatizrpr-a";
     private List<Vrtic> vrtici = new ArrayList<>();
 
     @Override
 
     public Vrtic getById(int id){
         //Pronalazi vrtić po ID-u iz liste
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM vrici WHERE id = ?")){
+            statement.setInt(1,id);
+            ResultSet resultSet = statement.executeQuery();
 
-        for(Vrtic vrtic: vrtici){
+            if(resultSet.next()) {
+                Vrtic vrtic = new Vrtic();
+                vrtic.setId(resultSet.getInt("id"));
+                vrtic.setNaziv(resultSet.getString("naziv"));
+
+                return vrtic;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+      /*  for(Vrtic vrtic: vrtici){
             if(vrtic.getId() == id){
                 return vrtic;
             }
-        }
+        } */
 
         return null; // Ako nije pronađen vrtić sa datim ID-om
 
@@ -29,6 +49,10 @@ public class VrticDAOImplements implements VrticDAO {
     @Override
 
     public List<Vrtic> getAll(){
+
+        List<Vrtic> vrtici = new ArrayList<>();
+
+        try()
         //Vraća sve vrtiće iz liste
 
         return vrtici;
