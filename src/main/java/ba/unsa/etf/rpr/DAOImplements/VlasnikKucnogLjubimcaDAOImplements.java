@@ -179,21 +179,56 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     public List<VlasnikKucnogLjubimca> getByPrezime(String prezime){
     // Filtrira vlasnike prema prezimenu
 
-      List<VlasnikKucnogLjubimca> vlasniciPoPrezimenu = new ArrayList<>();
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnici WHERE prezime = ?")) {
+            statement.setString(1,prezime);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
+                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setIme(resultSet.getString("ime"));
+                vlasnik.setPrezime(resultSet.getString("prezime"));
+                vlasnici.add(vlasnik);
+
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+   /*   List<VlasnikKucnogLjubimca> vlasniciPoPrezimenu = new ArrayList<>();
       for(VlasnikKucnogLjubimca vlasnik: vlasnici){
           if(vlasnik.getPrezime().equals(prezime)){
               vlasniciPoPrezimenu.add(vlasnik);
           }
       }
-      return vlasniciPoPrezimenu;
-
+      return vlasniciPoPrezimenu; */
+        return vlasnici;
     }
 
     @Override
 
-    public List<VlasnikKucnogLjubimca> getByLjubimac(KucniLjubimac ljubimac){
-    //Filtrira vlasnike prema kućnom ljubimcu
+    public List<VlasnikKucnogLjubimca> getByLjubimac(KucniLjubimac ljubimac) {
+        //Filtrira vlasnike prema kućnom ljubimcu
 
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            PreparedStatement statement = connection.prepareStatement("SELECT v. *FROM vlasnici v" + "INNER JOIN vlasnici_ljubimci vl ON v.id = vl.vlasnik_id" + "WHERE vl.ljubimac_id =?")) {
+
+            statement.setInt(1,ljubimac.getId());
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
+                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setIme(resultSet.getString("ime"));
+                vlasnik.setPrezime(resultSet.getString("prezime"));
+                vlasnici.add(vlasnik);
+
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        /*
         List<VlasnikKucnogLjubimca> vlasniciPoLjubimcu = new ArrayList<>();
 
         for(VlasnikKucnogLjubimca vlasnik: vlasnici){
@@ -215,6 +250,8 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     }
     return maxId + 1;
 
+    } */
+        return vlasnici;
     }
 }
 
