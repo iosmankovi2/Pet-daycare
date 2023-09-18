@@ -82,4 +82,14 @@ public class VrticController {
             rezervacijeListView.getItems().add(rezervacija.toString());
         }
     }
+
+    // Metoda za brisanje unesenih podataka iz polja nakon dodavanja rezervacije
+    private void ocistiPolja() {
+        imeField.clear();
+        prezimeField.clear();
+        ljubimacImeField.clear();
+        ljubimacVrstaField.clear();
+        datePicker.setValue(null);
+    }
+
 }
