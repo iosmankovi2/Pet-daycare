@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr;
 
 /**
- * Terminalni korisnički interfejs
+ * Terminalni korisnicki interfejs
  */
 
 import ba.unsa.etf.rpr.DAOImplements.KucniLjubimacDAOImpements;
