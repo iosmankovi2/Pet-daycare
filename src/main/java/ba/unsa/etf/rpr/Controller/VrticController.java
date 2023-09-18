@@ -73,5 +73,13 @@ public class VrticController {
     ocistiPolja();
 }
 
+    // Metoda za ažuriranje ListView
+    private void azurirajListView() {
+        List<Rezervacija> rezervacije = vrtic.getRezervacije();
+        rezervacijeListView.getItems().clear();
 
+        for (Rezervacija rezervacija : rezervacije) {
+            rezervacijeListView.getItems().add(rezervacija.toString());
+        }
+    }
 }
