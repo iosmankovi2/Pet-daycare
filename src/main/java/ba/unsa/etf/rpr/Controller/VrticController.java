@@ -27,6 +27,9 @@ public class VrticController {
     @FXML
     private DatePicker datePicker;
 
+    @FXML
+    private ListView<String> rezervacijeListView;
+
 
 
 }
