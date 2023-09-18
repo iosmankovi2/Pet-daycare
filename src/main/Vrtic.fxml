@@ -78,11 +78,9 @@
       </Label>
 
       <ImageView fitHeight="151.0" fitWidth="168.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-          <Image>
-              <url>
-                  <String>/https://github.com/iosmankovi2/Pet-daycare/blob/cc9763c806d8aeccc846bea559efd9e77f4bbdf7/Black%20and%20Grey%20Illustrative%20Pet%20Shop%20Logo.png/Black and Grey Illustrative Pet Shop Logo.png</String>
-              </url>
-          </Image>
+          <image>
+              <Image url="https://raw.githubusercontent.com/iosmankovi2/Pet-daycare/cc9763c806d8aeccc846bea559efd9e77f4bbdf7/Black%20and%20Grey%20Illustrative%20Pet%20Shop%20Logo.png" />
+          </image>
       </ImageView>
     </children>
 </AnchorPane>
