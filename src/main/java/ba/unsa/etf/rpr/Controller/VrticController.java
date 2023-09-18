@@ -11,4 +11,7 @@ import java.time.LocalDate;
 
 public class VrticController {
 
+
+    @FXML
+    private TextField imeField;
 }
