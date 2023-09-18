@@ -23,4 +23,10 @@ public class VrticController {
 
     @FXML
     private TextField ljubimacVrstaField;
+
+    @FXML
+    private DatePicker datePicker;
+
+
+
 }
