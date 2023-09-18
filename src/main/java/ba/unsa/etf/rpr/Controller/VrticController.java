@@ -17,4 +17,7 @@ public class VrticController {
 
     @FXML
     private TextField prezimeField;
+
+    @FXML
+    private TextField ljubimacImeField;
 }
