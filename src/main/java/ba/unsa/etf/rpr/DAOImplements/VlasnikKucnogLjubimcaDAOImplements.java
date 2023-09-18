@@ -14,21 +14,21 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     private static final String USER = "root";
     private static final String PASSWORD = "projekatizrpr-a";
 
-    private List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
+    private final List<VlasnikKucnogLjubimca> vlasnici = new ArrayList<>();
 
     @Override
 
     public VlasnikKucnogLjubimca getById(int id){
     //  Pronalazak vlasnika po Id-u iz liste
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnici WHERE id = ? "))
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnik_ljubimca WHERE idvlasnik_ljubimca = ? "))
         {
             statement.setInt(1,id);
             ResultSet resultSet = statement.executeQuery();
 
             if(resultSet.next()){
                 VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
-                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setId(resultSet.getInt("idvlasnik_ljubimca"));
                 vlasnik.setIme(resultSet.getString("ime"));
                 vlasnik.setPrezime(resultSet.getString("prezime"));
                 return vlasnik;
@@ -52,12 +52,12 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     public List<VlasnikKucnogLjubimca> getAll(){
     //Vraća sve vlasnike iz liste
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-        PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnici")){
+        PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnik_ljubimca")){
             ResultSet resultSet = statement.executeQuery();
 
             while(resultSet.next()){
                 VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
-                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setId(resultSet.getInt("idvlasnik_ljubimca"));
                 vlasnik.setIme(resultSet.getString("ime"));
                 vlasnik.setPrezime(resultSet.getString("prezime"));
                 vlasnici.add(vlasnik);
@@ -74,7 +74,7 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     //Generiše novi ID za vlasnika
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO vlasnici(ime,prezime) VALUES (?,?)",
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO vlasnik_ljubimca(ime,prezime) VALUES (?,?)",
                 Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1,vlasnik.getIme());
             statement.setString(2,vlasnik.getPrezime());
@@ -88,11 +88,7 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
         }catch(SQLException e){
             e.printStackTrace();
         }
-        /*
-        int newId = generateNewId();
-        vlasnik.setId(newId);
-        vlasnici.add(vlasnik);
-        */
+
         return vlasnik;
     }
 
@@ -102,7 +98,7 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     //Pronalazi postojećeg vlasnika prema ID-u i zamenjuje ga novim podacima
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-        PreparedStatement statement = connection.prepareStatement("UPDATE vlasnici SET ime = ?, prezime = ? WHERE id = ?")){
+        PreparedStatement statement = connection.prepareStatement("UPDATE vlasnik_ljubimca SET ime = ?, prezime = ? WHERE idvlasnik_ljubimca = ?")){
             statement.setString(1,vlasnik.getIme());
             statement.setString(2,vlasnik.getPrezime());
             statement.setInt(3,vlasnik.getId());
@@ -110,13 +106,7 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
         }catch(SQLException e){
             e.printStackTrace();
         }
-        /*
-        for(int i = 0; i < vlasnici.size(); i++){
-            if(vlasnici.get(i).getId() == vlasnik.getId()){
-                vlasnici.set(i, vlasnik);
-                return; //Ako je vlasnik ažuriran, prekidamo petlju
-            }
-        } */
+
     }
 
     @Override
@@ -125,19 +115,13 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     //Uklanja vlasnika sa datim ID-om iz liste
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-        PreparedStatement statement = connection.prepareStatement("DELETE FROM vlasnici WHERE id = ?")) {
+        PreparedStatement statement = connection.prepareStatement("DELETE FROM vlasnik_ljubimca WHERE idvlasnik_ljubimca = ?")) {
             statement.setInt(1,id);
             statement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
         }
-        /*
-        for(int i = 0; i < vlasnici.size(); i++){
-            if(vlasnici.get(i).getId() == id){
-                vlasnici.remove(i);
-                return; // Ako je vlasnik uklonjen, prekidamo petlju
-            }
-        } */
+
     }
 
     @Override
@@ -146,13 +130,13 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     //Filtrira vlasnika prema imenu
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnici WHERE ime = ?")) {
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnik_ljubimca WHERE ime = ?")) {
             statement.setString(1,ime);
             ResultSet resultSet = statement.executeQuery();
 
             while(resultSet.next()){
                 VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
-                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setId(resultSet.getInt("idvlasnik_ljubimca"));
                 vlasnik.setIme(resultSet.getString("ime"));
                 vlasnik.setPrezime(resultSet.getString("prezime"));
                 vlasnici.add(vlasnik);
@@ -161,16 +145,7 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
         }catch(SQLException e){
             e.printStackTrace();
         }
-        /*
-        List<VlasnikKucnogLjubimca> vlasniciPoImenu = new ArrayList<>();
-        for(VlasnikKucnogLjubimca vlasnik: vlasnici){
-            if(vlasnik.getIme().equals(ime)){
-                vlasniciPoImenu.add(vlasnik);
-            }
-        }
 
-        return vlasniciPoImenu;
-        */
         return vlasnici;
     }
 
@@ -180,13 +155,13 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
     // Filtrira vlasnike prema prezimenu
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnici WHERE prezime = ?")) {
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM vlasnik_ljubimca WHERE prezime = ?")) {
             statement.setString(1,prezime);
             ResultSet resultSet = statement.executeQuery();
 
             while(resultSet.next()){
                 VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
-                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setId(resultSet.getInt("idvlasnik_ljubimca"));
                 vlasnik.setIme(resultSet.getString("ime"));
                 vlasnik.setPrezime(resultSet.getString("prezime"));
                 vlasnici.add(vlasnik);
@@ -195,13 +170,7 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
         }catch(SQLException e){
             e.printStackTrace();
         }
-   /*   List<VlasnikKucnogLjubimca> vlasniciPoPrezimenu = new ArrayList<>();
-      for(VlasnikKucnogLjubimca vlasnik: vlasnici){
-          if(vlasnik.getPrezime().equals(prezime)){
-              vlasniciPoPrezimenu.add(vlasnik);
-          }
-      }
-      return vlasniciPoPrezimenu; */
+
         return vlasnici;
     }
 
@@ -211,14 +180,14 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
         //Filtrira vlasnike prema kućnom ljubimcu
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("SELECT v. *FROM vlasnici v" + "INNER JOIN vlasnici_ljubimci vl ON v.id = vl.vlasnik_id" + "WHERE vl.ljubimac_id =?")) {
+            PreparedStatement statement = connection.prepareStatement("SELECT v. *FROM vlasnik_ljubimca v" + "INNER JOIN vlasnici_ljubimci vl ON v.id = vl.idvlasnik_ljubimca" + "WHERE vl.idKucniLjubimac =?")) {
 
             statement.setInt(1,ljubimac.getId());
             ResultSet resultSet = statement.executeQuery();
 
             while(resultSet.next()){
                 VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
-                vlasnik.setId(resultSet.getInt("id"));
+                vlasnik.setId(resultSet.getInt("idvlasnik_ljubimca"));
                 vlasnik.setIme(resultSet.getString("ime"));
                 vlasnik.setPrezime(resultSet.getString("prezime"));
                 vlasnici.add(vlasnik);
@@ -228,29 +197,6 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
             e.printStackTrace();
         }
 
-        /*
-        List<VlasnikKucnogLjubimca> vlasniciPoLjubimcu = new ArrayList<>();
-
-        for(VlasnikKucnogLjubimca vlasnik: vlasnici){
-            if(vlasnik.getLjubimci().contains(ljubimac)){
-                vlasniciPoLjubimcu.add(vlasnik);
-            }
-        }
-        return vlasniciPoLjubimcu;
-    }
-
-    //Pomoćna metoda za generisanje novog ID-a
-
-    private int generateNewId(){
-    int maxId = 0;
-    for(VlasnikKucnogLjubimca vlasnik: vlasnici){
-        if(vlasnik.getId() > maxId){
-            maxId = vlasnik.getId();
-        }
-    }
-    return maxId + 1;
-
-    } */
         return vlasnici;
     }
 }

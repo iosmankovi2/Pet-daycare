@@ -11,14 +11,25 @@ import ba.unsa.etf.rpr.Rezervacija;
 import ba.unsa.etf.rpr.VlasnikKucnogLjubimca;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
+//import javafx.scene.control.DatePicker;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 //import javax.swing.text.html.ListView;
-import java.awt.*;
-import java.util.List;
+//import java.awt.*;
+//import java.util.List;
 import javafx.scene.control.ListView;
+
+/**
+ * UI sa minimalno pet JavaFX komponenti "Tekstualno polje, DatePicker, ListView i dugme"
+ *
+ * @author Ilhana
+ * @version 1.0
+ *
+ */
+
+
 public class VrticUI extends Application {
 
     private VlasnikKucnogLjubimcaDAO vlasnikDAO;
@@ -26,7 +37,7 @@ public class VrticUI extends Application {
     private RezervacijaDAO rezervacijaDAO;
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 
     @Override
@@ -80,18 +91,15 @@ public class VrticUI extends Application {
 
         //Dohvaćanje svih vlasnika i kućnih ljubimaca iz baze za prikaz
 
-        List<VlasnikKucnogLjubimca> vlasnici = vlasnikDAO.getAll();
-        List<KucniLjubimac> ljubimci = kucniLjubimacDAO.getAll();
+    //    List<VlasnikKucnogLjubimca> vlasnici = vlasnikDAO.getAll();
+     //   List<KucniLjubimac> ljubimci = kucniLjubimacDAO.getAll();
 
         //Dodavanje komponenata u korijenski VBox
-        VBox vBox = new VBox(10);
 
-        vBox.getChildren().addAll(imeLabel, imeField, prezimeLabel,
+        root.getChildren().addAll(imeLabel, imeField, prezimeLabel,
                 prezimeField, ljubimacImeLabel, ljubimacImeField,
                 ljubimacVrstaLabel, ljubimacVrstaField, datumLabel,
                 datePicker, dodajButton, rezervacijeListView);
-        Scene scene = new Scene(vBox,400,400);
-        primaryStage.setScene(scene);
 
         //Dodajemo akciju na dugme za dodavanje rezervacije u bazu podataka
 
@@ -104,7 +112,6 @@ public class VrticUI extends Application {
             String ljubimacIme = ljubimacImeField.getText();
             String ljubimacVrsta = ljubimacVrstaField.getText();
             java.util.Date datum = java.sql.Date.valueOf(datePicker.getValue());
-
 
             //Dodavanje vlasnika u bazu podataka
 
@@ -124,7 +131,7 @@ public class VrticUI extends Application {
             //Dodavanje informacija o rezervaciji u ListView
 
             String rezervacijaInfo = "Vlasnik: " + vlasnik.getIme() + " " + vlasnik.getPrezime() +
-                    " " + "Ljubimac: " + ljubimac.getIme() + ", Datum rezervacije: " + datum.toString();
+                    " " + "Ljubimac: " + ljubimac.getIme() + ", Datum rezervacije: " + datum;
 
             rezervacijeListView.getItems().add(rezervacijaInfo);
 
@@ -147,4 +154,4 @@ public class VrticUI extends Application {
         });
 
     }
-}
+    }

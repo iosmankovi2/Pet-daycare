@@ -3,10 +3,10 @@ package ba.unsa.etf.rpr.DAOImplements;
 import ba.unsa.etf.rpr.Dao.RezervacijaDAO;
 import ba.unsa.etf.rpr.Rezervacija;
 
-import javax.swing.*;
+//import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
+//import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
     private static final String URL = "jdbc:mysql://localhost:3306/pet_daycare";
     private static final String USER = "root";
     private static final String PASSWORD = "projekatizrpr-a";
-    private List<Rezervacija> rezervacije = new ArrayList<>();
+    private final List<Rezervacija> rezervacije = new ArrayList<>();
 
     @Override
 
@@ -22,24 +22,20 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         //Pronalazi rezervaciju po ID-u iz liste
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("SELECT *FROM rezervacije WHERE id = ?")){
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM rezervacija WHERE idrezervacija = ?")){
             statement.setInt(1,id);
             ResultSet resultSet = statement.executeQuery();
 
             if(resultSet.next()){
                 Rezervacija rezervacija = new Rezervacija();
-                rezervacija.setId(resultSet.getInt("id"));
-                rezervacija.setDatumRezervacije(resultSet.getDate("datum_rezervacije"));
+                rezervacija.setId(resultSet.getInt("idrezervacija"));
+                rezervacija.setDatumRezervacije(resultSet.getDate("datumRezervacije"));
                 return rezervacija;
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        /* for(Rezervacija rezervacija: rezervacije){
-            if(rezervacija.getId() == id){
-                return rezervacija;
-            }
-        } */
+
         return null; //Ako nije pronađena rezervacija sa datim ID-om
     }
 
@@ -50,12 +46,12 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
         Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT *FROM rezervacije");
+            ResultSet resultSet = statement.executeQuery("SELECT *FROM rezervacija");
 
             while(resultSet.next()){
                 Rezervacija rezervacija = new Rezervacija();
-                rezervacija.setId(resultSet.getInt("id"));
-                rezervacija.setDatumRezervacije(resultSet.getDate("datum_rezervacije"));
+                rezervacija.setId(resultSet.getInt("idrezervacija"));
+                rezervacija.setDatumRezervacije(resultSet.getDate("datumRezervacije"));
                 rezervacije.add(rezervacija);
             }
 
@@ -72,16 +68,13 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         //Generiše novi ID za rezervaciju
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO rezervacije(datum_rezervacije,...)VALUES (?,...)")) {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO rezervacija(datumRezervacije,...)VALUES (?,...)")) {
             statement.setDate(1,new java.sql.Date(rezervacija.getDatumRezervacije().getTime()));
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        /*
-        int newId = generateNewId();
-        rezervacija.setId(newId);
-        rezervacije.add(rezervacija); */
+
     }
 
     @Override
@@ -90,20 +83,14 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         //Pronalazi postojeću rezervaciju prema ID-u i zamjenjuje je novim podacima
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("UPDATE rezervacije SET datum_rezervacije = ?,...WHERE id = ?")) {
+            PreparedStatement statement = connection.prepareStatement("UPDATE rezervacija SET datumRezervacije = ?,...WHERE idrezervacija = ?")) {
             statement.setDate(1,new java.sql.Date(rezervacija.getDatumRezervacije().getTime()));
             statement.setInt(7,rezervacija.getId());
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
-     /*   for(int i = 0; i < rezervacije.size(); i++){
-            if(rezervacije.get(i).getId() == rezervacija.getId())
-            {
-                rezervacije.set(i,rezervacija);
-                return; //Ako je rezervacija ažurirana prekidamo petlju
-            }
-        } */
+
     }
 
     @Override
@@ -112,19 +99,13 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         //Uklanja rezervaciju sa datim ID-om iz liste
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM rezervacije WHERE id = ?")) {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM rezervacija WHERE idrezervacija = ?")) {
             statement.setInt(1,id);
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
-     /*   for(int i = 0; i < rezervacije.size(); i++)
-        {
-            if(rezervacije.get(i).getId() == id){
-                rezervacije.remove(i);
-                return;
-            }
-        } */
+
     }
 
     @Override
@@ -135,40 +116,25 @@ public class RezervacijaDAOImplements implements RezervacijaDAO {
         List<Rezervacija> rezervacijeZaDatum = new ArrayList<>();
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("SELECT *FROM rezervacije WHERE datum_rezervacije = ?")) {
+            PreparedStatement statement = connection.prepareStatement("SELECT *FROM rezervacija WHERE datumRezervacije = ?")) {
             statement.setDate(1,new java.sql.Date(datum.getTime()));
             ResultSet resultSet = statement.executeQuery();
 
             while(resultSet.next())
             {
                 Rezervacija rezervacija = new Rezervacija();
-                rezervacija.setId(resultSet.getInt("id"));
-                rezervacija.setDatumRezervacije(resultSet.getDate("datum_rezervacije"));
+                rezervacija.setId(resultSet.getInt("idrezervacije"));
+                rezervacija.setDatumRezervacije(resultSet.getDate("datumRezervacije"));
                 rezervacijeZaDatum.add(rezervacija);
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
-      /*   List<Rezervacija> rezervacijeZaDatum = new ArrayList<>();
-        for(Rezervacija rezervacija: rezervacije){
-            if(datum.equals(rezervacija.getDatumRezervacije()))
-            {
-                rezervacijeZaDatum.add(rezervacija);
-            }
-        } */
+
         return rezervacijeZaDatum;
     }
 
-    //Pomoćna metoda za generisanje novog ID-a
-    private int generateNewId() {
-        int maxId = 0;
-        for(Rezervacija rezervacija: rezervacije){
-            if(rezervacija.getId() > maxId){
-                maxId = rezervacija.getId();
-            }
-        }
-        return maxId+1;
-    }
+
 
 
 }
