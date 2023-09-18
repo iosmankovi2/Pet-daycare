@@ -1,4 +1,5 @@
 package ba.unsa.etf.rpr.Controller;
+import ba.unsa.etf.rpr.Vrtic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -32,5 +33,7 @@ public class VrticController {
 
     @FXML
     private Button dodajButton;
+
+    private Vrtic vrtic;
 
 }
