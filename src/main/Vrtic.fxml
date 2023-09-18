@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controller.VrticController">
+    <children>
+        <VBox alignment="TOP_CENTER" layoutX="230.0" layoutY="23.0" spacing="20.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                    <children>
+                        <Label text="Ime:" />
+                        <TextField fx:id="imeField" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                    <children>
+                        <Label text="Prezime:" />
+                        <TextField fx:id="prezimeField" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                    <children>
+                        <Label text="Ime ljubimca:" />
+                        <TextField fx:id="ljubimacImeField" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                    <children>
+                        <Label text="Vrsta ljubimca:" />
+                        <TextField fx:id="ljubimacVrstaField" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                    <children>
+                        <Label text="Datum:" />
+                        <DatePicker fx:id="datePicker" />
+                    </children>
+                </HBox>
+                <Button fx:id="dodajButton" onAction="#dodajRezervaciju" text="Dodaj rezervaciju" />
+            </children>
+        </VBox>
+        <ListView fx:id="rezervacijeListView" layoutX="30.0" layoutY="23.0" prefHeight="354.0" prefWidth="195.0" />
+    </children>
+</AnchorPane>
+

@@ -5,15 +5,19 @@ import ba.unsa.etf.rpr.VlasnikKucnogLjubimca;
 import ba.unsa.etf.rpr.Vrtic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+//import javafx.scene.control.*;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
-import java.time.LocalDate;
+//import java.util.ArrayList; import java.time.LocalDate;
 
 public class VrticController {
 
@@ -36,16 +40,39 @@ public class VrticController {
     @FXML
     private ListView<String> rezervacijeListView;
 
-    @FXML
-    private Button dodajButton;
+    // @FXML private Button dodajButton;
 
     private Vrtic vrtic;
 
     // Inicijalizacija kontrolera
     public void initialize() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Vrtic.fxml"));
+            loader.setController(this);
+            Parent root = loader.load();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         vrtic = new Vrtic("Pet daycare");
     }
 
+    // Metoda za prikazivanje FXML-a
+    private void prikaziFXML(String nazivFXMLa) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(nazivFXMLa));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+        // Poziv metode za prikazivanje FXML-a, npr. iz neke druge metode
+        prikaziFXML("src/main/Vrtic.fxml");
+    }
     // Metoda za dodavanje rezervacije
     @FXML
     private void dodajRezervaciju(ActionEvent event) {
