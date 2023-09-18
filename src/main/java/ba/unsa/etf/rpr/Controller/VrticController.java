@@ -36,4 +36,11 @@ public class VrticController {
 
     private Vrtic vrtic;
 
+    // Inicijalizacija kontrolera
+    public void initialize() {
+        vrtic = new Vrtic("Pet daycare");
+    }
+
+
+
 }
