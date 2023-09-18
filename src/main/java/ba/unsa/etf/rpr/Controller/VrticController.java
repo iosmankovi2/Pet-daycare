@@ -30,6 +30,7 @@ public class VrticController {
     @FXML
     private ListView<String> rezervacijeListView;
 
-
+    @FXML
+    private Button dodajButton;
 
 }
