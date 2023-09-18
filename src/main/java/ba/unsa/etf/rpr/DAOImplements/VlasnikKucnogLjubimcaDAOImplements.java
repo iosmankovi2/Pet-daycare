@@ -3,7 +3,6 @@ package ba.unsa.etf.rpr.DAOImplements;
 import ba.unsa.etf.rpr.Dao.VlasnikKucnogLjubimcaDAO;
 import ba.unsa.etf.rpr.KucniLjubimac;
 import ba.unsa.etf.rpr.VlasnikKucnogLjubimca;
-import com.mysql.cj.exceptions.DataReadException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -71,7 +70,7 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
 
     @Override
 
-    public void insert(VlasnikKucnogLjubimca vlasnik){
+    public VlasnikKucnogLjubimca insert(VlasnikKucnogLjubimca vlasnik){
     //Generiše novi ID za vlasnika
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
@@ -94,6 +93,7 @@ public class VlasnikKucnogLjubimcaDAOImplements implements VlasnikKucnogLjubimca
         vlasnik.setId(newId);
         vlasnici.add(vlasnik);
         */
+        return vlasnik;
     }
 
     @Override

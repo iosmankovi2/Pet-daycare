@@ -40,6 +40,9 @@ public class Rezervacija implements Serializable {
         this.datumIzvrsenjaRezervacije = datumIzvrsenjaRezervacije;
     }
 
+    public Rezervacija(VlasnikKucnogLjubimca vlasnik, KucniLjubimac ljubimac, Date datum) {
+    }
+
     public VlasnikKucnogLjubimca getVlasnik(){
         return vlasnik;
     }

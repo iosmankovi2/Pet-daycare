@@ -11,7 +11,7 @@
           </node>
         </introspection-scope>
       </schema-mapping>
-      <url>jdbc:mysql://127.0.0.11:3306/?useSSL=false&amp;serverTimezone=Europe/Sarajevo?useSSL=false&amp;serverTimezone=Europe/Sarajevo</url>
+      <url>jdbc:mysql://127.0.0.11:3306/?useSSL=false&amp;serverTimezone=Europe/Sarajevo?useSSL=false&amp;serverTimezone=Europe/Sarajevo?useSSL=false&amp;serverTimezone=Europe/Sarajevo?useSSL=false&amp;serverTimezone=Europe/Sarajevo?useSSL=false&amp;serverTimezone=Europe/Sarajevo</url>
       <remarks>Moje tabele za bazu podataka</remarks>
       <vm-options />
       <driver-info id="mysql8" />

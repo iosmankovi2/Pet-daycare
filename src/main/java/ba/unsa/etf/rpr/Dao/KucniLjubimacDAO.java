@@ -8,7 +8,7 @@ public interface KucniLjubimacDAO {
 
     KucniLjubimac getById(int id);
     List<KucniLjubimac> getAll();
-    void insert(KucniLjubimac ljubimac);
+    KucniLjubimac insert(KucniLjubimac ljubimac);
     void update(KucniLjubimac ljubimac);
     void delete(int id);
 

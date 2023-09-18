@@ -6,8 +6,6 @@ import ba.unsa.etf.rpr.KucniLjubimac;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PropertyPermission;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
     private List<KucniLjubimac> kucniLjubimci = new ArrayList<>();
@@ -65,7 +63,7 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
 
     @Override
 
-    public void insert(KucniLjubimac ljubimac) {
+    public KucniLjubimac insert(KucniLjubimac ljubimac) {
         //Generišemo novi ID
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
@@ -79,6 +77,7 @@ public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
         ljubimac.setId(newId);
         kucniLjubimci.add(ljubimac); */
 
+        return ljubimac;
     }
 
     @Override
