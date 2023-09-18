@@ -1,4 +1,7 @@
 package ba.unsa.etf.rpr.Controller;
+import ba.unsa.etf.rpr.KucniLjubimac;
+import ba.unsa.etf.rpr.Rezervacija;
+import ba.unsa.etf.rpr.VlasnikKucnogLjubimca;
 import ba.unsa.etf.rpr.Vrtic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,6 +53,25 @@ public class VrticController {
         String vrstaLjubimca = ljubimacVrstaField.getText();
         LocalDate datum = datePicker.getValue();
 
+
+    // Stvaranje vlasnika
+    VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca(imeVlasnika, prezimeVlasnika);
+
+    // Stvaranje kućnog ljubimca
+    KucniLjubimac ljubimac = new KucniLjubimac(imeLjubimca, vrstaLjubimca);
+
+    // Stvaranje rezervacije
+    Rezervacija rezervacija = new Rezervacija(vlasnik, ljubimac, datum);
+
+    // Dodavanje rezervacije u vrtić
+        vrtic.dodajRezervaciju(rezervacija);
+
+    // Ažurirajte ListView s novim podacima o rezervacijama
+    azurirajListView();
+
+    // Očistite polja nakon dodavanja rezervacije
+    ocistiPolja();
+}
 
 
 }
