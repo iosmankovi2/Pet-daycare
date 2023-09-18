@@ -41,6 +41,15 @@ public class VrticController {
         vrtic = new Vrtic("Pet daycare");
     }
 
+    // Metoda za dodavanje rezervacije
+    @FXML
+    private void dodajRezervaciju(ActionEvent event) {
+        String imeVlasnika = imeField.getText();
+        String prezimeVlasnika = prezimeField.getText();
+        String imeLjubimca = ljubimacImeField.getText();
+        String vrstaLjubimca = ljubimacVrstaField.getText();
+        LocalDate datum = datePicker.getValue();
+
 
 
 }
