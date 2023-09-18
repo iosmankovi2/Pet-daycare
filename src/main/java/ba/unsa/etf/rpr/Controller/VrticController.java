@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
+
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -51,7 +53,7 @@ public class VrticController {
         String prezimeVlasnika = prezimeField.getText();
         String imeLjubimca = ljubimacImeField.getText();
         String vrstaLjubimca = ljubimacVrstaField.getText();
-        LocalDate datum = datePicker.getValue();
+        Date datum = java.sql.Date.valueOf(datePicker.getValue());
 
 
     // Stvaranje vlasnika
