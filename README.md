@@ -1,6 +1,6 @@
 ###### My project for the course "Razvoj programskih rješenja"
 # Pet daycare
-
+![alt text](https://raw.githubusercontent.com/iosmankovi2/Pet-daycare/main/Black%20and%20Grey%20Illustrative%20Pet%20Shop%20Logo.png)
 ### Pet daycare is a project that allows pet owners to reserve a spot for their pets in daycare center. This system makes it easier for owners to care for their pets while they are busy or away.
 
 ### Features
