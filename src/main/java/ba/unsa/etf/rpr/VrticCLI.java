@@ -1,9 +1,11 @@
 package ba.unsa.etf.rpr;
 
-/**
+ /*
+ * @author Ilhana
+ * @version 1.0
+ *
  * Terminalni korisnicki interfejs
  */
-
 import ba.unsa.etf.rpr.DAOImplements.KucniLjubimacDAOImpements;
 import ba.unsa.etf.rpr.DAOImplements.RezervacijaDAOImplements;
 import ba.unsa.etf.rpr.DAOImplements.VlasnikKucnogLjubimcaDAOImplements;
@@ -22,9 +24,9 @@ public class VrticCLI {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Inicijalizacija repozitorija (DAO objekti)
+        //Inicijalizacija repozitorija (DAO objekti)
         VlasnikKucnogLjubimcaDAO vlasnikDAO = new VlasnikKucnogLjubimcaDAOImplements();
-        KucniLjubimacDAO kucniLjubimacDAO = new KucniLjubimacDAOImpements();
+       KucniLjubimacDAO kucniLjubimacDAO = new KucniLjubimacDAOImpements();
         RezervacijaDAO rezervacijaDAO = new RezervacijaDAOImplements();
 
         while (true) {
@@ -51,8 +53,7 @@ public class VrticCLI {
                     System.out.println("Unesite vrstu kućnog ljubimca:");
                     String vrstaLjubimca = scanner.nextLine();
 
-                  //  System.out.println("Unesite datum rezervacije (YYYY-MM-DD):");
-                    //        String datumStr = scanner.nextLine();
+                  /*  System.out.println("Unesite datum rezervacije (YYYY-MM-DD):");  String datumStr = scanner.nextLine(); */
 
                     Date datumRezervacije = null;
                     boolean validanDatum = false;
@@ -69,9 +70,9 @@ public class VrticCLI {
                         }
                     }
                         // Kreiraj objekte vlasnika, ljubimca i rezervacije
-                        VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca(imeVlasnika, prezimeVlasnika);
+                      VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca(imeVlasnika, prezimeVlasnika);
                         KucniLjubimac ljubimac = new KucniLjubimac(imeLjubimca, vrstaLjubimca);
-                        Rezervacija rezervacija = new Rezervacija(vlasnik, ljubimac, datumRezervacije);
+                       Rezervacija rezervacija = new Rezervacija(vlasnik, ljubimac, datumRezervacije);
 
                         // Dodaj rezervaciju u bazu
                         rezervacijaDAO.insert(rezervacija);

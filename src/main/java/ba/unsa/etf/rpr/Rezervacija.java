@@ -22,8 +22,46 @@ public class Rezervacija implements Serializable {
      * Prazan konstruktor zbog JavaBeans-a
      */
 
-    public Rezervacija(){
+    private Rezervacija(){
     }
+
+    //fleksibilno kreiranje objekata bez potrebe za
+    // dugim konstruktorima sa mnogo parametara.
+
+    public static class Builder {
+        private Rezervacija novaRezervacija;
+
+        public Builder() {
+            novaRezervacija = new Rezervacija();
+        }
+
+        public Builder saVlasnikom(VlasnikKucnogLjubimca vlasnik) {
+            novaRezervacija.vlasnik = vlasnik;
+            return this;
+        }
+
+        public Builder saLjubimcem(KucniLjubimac ljubimac) {
+            novaRezervacija.ljubimac = ljubimac;
+            return this;
+        }
+
+        public Builder saDatumomRezervacije(Date datumRezervacije) {
+            novaRezervacija.datumRezervacije = datumRezervacije;
+            return this;
+        }
+
+        public Builder saDatumomIzvrsenjaRezervacije(Date datumIzvrsenjaRezervacije) {
+            novaRezervacija.datumIzvrsenjaRezervacije = datumIzvrsenjaRezervacije;
+            return this;
+        }
+
+        public Rezervacija build() {
+            return novaRezervacija;
+        }
+    }
+
+
+
 
     /**
      * Konstruktor za rezervaciju
@@ -84,6 +122,19 @@ public class Rezervacija implements Serializable {
         this.id = id;
     }
 
+    public static void main(String[] args) {
+        VlasnikKucnogLjubimca vlasnik = new VlasnikKucnogLjubimca();
+        KucniLjubimac ljubimac = new KucniLjubimac();
+        Date datumRezervacije = new Date();
+        Date datumIzvrsenjaRezervacije = new Date();
+
+        Rezervacija rezervacija = new Rezervacija.Builder()
+                .saVlasnikom(vlasnik)
+                .saLjubimcem(ljubimac)
+                .saDatumomRezervacije(datumRezervacije)
+                .saDatumomIzvrsenjaRezervacije(datumIzvrsenjaRezervacije)
+                .build();
+    }
 
 }
 
