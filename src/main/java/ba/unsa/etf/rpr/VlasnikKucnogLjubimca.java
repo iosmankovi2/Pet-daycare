@@ -19,12 +19,28 @@ public class VlasnikKucnogLjubimca implements Serializable {
 
     private Integer id;
 
+    //  čuvamo jednu instancu klase - Singleton design pattern
+
+    private static VlasnikKucnogLjubimca instance;
+
+    private VlasnikKucnogLjubimca() {
+        this.ljubimci = new ArrayList<>();
+    }
+
+    //osiguravamo da u programu postoji samo jedna instanca klase VlasnikKucnogLjubimca.
+    public static VlasnikKucnogLjubimca getInstance() {
+        if (instance == null) {
+            instance = new VlasnikKucnogLjubimca();
+        }
+        return instance;
+    }
+
     /**
      * Prazan konstruktor zbog JavaBeans-a
      */
 
-    public VlasnikKucnogLjubimca(){
-    }
+  /*  public VlasnikKucnogLjubimca(){
+    } */
 
     /**
      * Konstruktor za vlasnika kućnih ljubimaca.
