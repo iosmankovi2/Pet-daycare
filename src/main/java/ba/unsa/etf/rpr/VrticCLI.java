@@ -6,7 +6,7 @@ package ba.unsa.etf.rpr;
  *
  * Terminalni korisnicki interfejs
  */
-import ba.unsa.etf.rpr.DAOImplements.KucniLjubimacDAOImpements;
+import ba.unsa.etf.rpr.DAOImplements.KucniLjubimacDAOImplements;
 import ba.unsa.etf.rpr.DAOImplements.RezervacijaDAOImplements;
 import ba.unsa.etf.rpr.DAOImplements.VlasnikKucnogLjubimcaDAOImplements;
 import ba.unsa.etf.rpr.Dao.KucniLjubimacDAO;
@@ -26,7 +26,7 @@ public class VrticCLI {
 
         //Inicijalizacija repozitorija (DAO objekti)
         VlasnikKucnogLjubimcaDAO vlasnikDAO = new VlasnikKucnogLjubimcaDAOImplements();
-       KucniLjubimacDAO kucniLjubimacDAO = new KucniLjubimacDAOImpements();
+       KucniLjubimacDAO kucniLjubimacDAO = new KucniLjubimacDAOImplements();
         RezervacijaDAO rezervacijaDAO = new RezervacijaDAOImplements();
 
         while (true) {

@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr.PetdaycareUI;
 
-import ba.unsa.etf.rpr.DAOImplements.KucniLjubimacDAOImpements;
+import ba.unsa.etf.rpr.DAOImplements.KucniLjubimacDAOImplements;
 import ba.unsa.etf.rpr.DAOImplements.RezervacijaDAOImplements;
 import ba.unsa.etf.rpr.DAOImplements.VlasnikKucnogLjubimcaDAOImplements;
 import ba.unsa.etf.rpr.Dao.KucniLjubimacDAO;
@@ -48,7 +48,7 @@ public class VrticUI extends Application {
         //Inicijalizacija repozitorija
 
         vlasnikDAO = new VlasnikKucnogLjubimcaDAOImplements();
-        kucniLjubimacDAO = new KucniLjubimacDAOImpements();
+        kucniLjubimacDAO = new KucniLjubimacDAOImplements();
         rezervacijaDAO = new RezervacijaDAOImplements();
 
         //Kreiranje korijenskog kontejnera - VBox

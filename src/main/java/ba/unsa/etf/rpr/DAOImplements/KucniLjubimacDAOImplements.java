@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KucniLjubimacDAOImpements implements KucniLjubimacDAO {
+public class KucniLjubimacDAOImplements implements KucniLjubimacDAO {
     private final List<KucniLjubimac> kucniLjubimci = new ArrayList<>();
 
     private static final String URL = "jdbc:mysql://localhost:3306/pet_daycare";
