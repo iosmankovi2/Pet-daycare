@@ -19,7 +19,7 @@ public class VlasnikKucnogLjubimca implements Serializable {
 
     private Integer id;
 
-    //  čuvamo jednu instancu klase - Singleton design pattern
+    //cuvamo jednu instancu klase - Singleton design pattern
 
     private static VlasnikKucnogLjubimca instance;
 

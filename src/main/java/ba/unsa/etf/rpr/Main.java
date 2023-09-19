@@ -37,8 +37,8 @@ public class Main
             System.exit(1);
         }
 
-        VlasnikKucnogLjubimca vlasnik1 = new VlasnikKucnogLjubimca("Hana", "Hanić");
-        KucniLjubimac ljubimac1 = new KucniLjubimac("Fren","Mačka");
+        VlasnikKucnogLjubimca vlasnik1 = new VlasnikKucnogLjubimca("Hana", "Hanic");
+        KucniLjubimac ljubimac1 = new KucniLjubimac("Fren","Macka");
         vlasnik1.dodajLjubimca(ljubimac1);
 
         Vrtic vrtic = new Vrtic("Pet daycare");
